@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>DeepStack.CSharp.Sdk.SampleApp</RootNamespace>
+<!--    <TargetFramework>netstandard2.0</TargetFramework>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GloballyPaid.net" Version="1.0.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\deepstack-payments\src\DeepStack.CSharp.Sdk\DeepStack.CSharp.Sdk.csproj" />
+  </ItemGroup>
+
+</Project>
