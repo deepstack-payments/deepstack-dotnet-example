@@ -1,6 +1,6 @@
-# Globally Paid .NET SDK Samples (Examples of use)
+# Deepstack .NET SDK Samples (Examples of use)
 
-The official [Globally Paid .NET library][gp-dotnet] samples
+The official [Deepstack .NET library][ds-dotnet] samples
 
 ## Usage
 
@@ -8,35 +8,23 @@ Clone this repository
 
 ### Sample Console App
 
-Sample console app that showcases all Globally Paid SDK service calls.
+Sample console app that showcases all Deepstack SDK service calls (Pending updates).
 
 ##### Configuration
 
-All SDK calls in the Sample Console App can be configured using the static `GloballyPaidConfiguration` object:
+All SDK calls in the Sample Console App can be configured using the static `DeepStackConfiguration` object:
 
 ```c#
-GloballyPaidConfiguration.PublishableApiKey = "Your Publishable API Key";
-GloballyPaidConfiguration.SharedSecret = "Your Shared Secret";
-GloballyPaidConfiguration.AppId = "Your APP ID";
-GloballyPaidConfiguration.UseSandbox = false; //true if you need to test through Globally Paid sandbox
-GloballyPaidConfiguration.RequestTimeoutSeconds = 90;
+DeepStackConfiguration.PublishableApiKey = "Your Publishable API Key";
+DeepStackConfiguration.SharedSecret = "Your Shared Secret";
+DeepStackConfiguration.AppId = "Your APP ID";
+DeepStackConfiguration.UseSandbox = false; //true if you need to test through Globally Paid sandbox
+DeepStackConfiguration.RequestTimeoutSeconds = 90;
 ```
-Or using the `GloballyPaidConfiguration` *Setup* method:
+Or using the `DeepStackConfiguration` *Setup* method:
 
 ```c#
-GloballyPaidConfiguration.Setup("Your Publishable API Key", "Your Shared Secret", "Your APP ID", useSandbox: false, requestTimeoutSeconds: 90);
-```
-
-Or using the `<appSettings>` section in configuration file (App.config):
-
-```xml
-<appSettings>
-    <add key="GloballyPaidPublishableApiKey" value="Your Publishable API Key"></add>
-    <add key="GloballyPaidSharedSecret" value="Your Shared Secret"></add>
-    <add key="GloballyPaidAppId" value="Your APP ID"></add>
-    <add key="GloballyPaidUseSandbox" value="false"></add> <!--true if you need to test through Globally Paid sandbox-->
-    <add key="GloballyPaidRequestTimeoutSeconds" value="90"></add>
-</appSettings>
+DeepStackConfiguration.Setup("Your Publishable API Key", "Your Shared Secret", "Your APP ID", useSandbox: false, requestTimeoutSeconds: 90);
 ```
 
 ##### Run
@@ -44,27 +32,27 @@ Run the Sample Console App and see all examples in `Program.cs`
 
 ### Sample App
 
-Sample MVC app that showcases charge sale transaction done through a UI credit card form using the [Globally Paid JS SDK][gp-js]
+Sample MVC app that showcases charge sale transaction done through a UI credit card form using the Deepstack JS-SDK
 
 ##### Configuration
 
-All SDK calls can be configured within `ConfigureServices` method in `Startup` class using the `AddGloballyPaid` extension.
-Additionally, this extension call will register all Globally Paid services:
+All SDK calls can be configured within `ConfigureServices` method in `Startup` class using the `AddDeepStack` extension.
+Additionally, this extension call will register all Deepstack services:
 
 ```c#
-services.AddGloballyPaid("Your Publishable API Key", "Your Shared Secret", "Your APP ID", useSandbox: false, requestTimeoutSeconds: 90);
+services.AddDeepStack("Your Publishable API Key", "Your Shared Secret", "Your APP ID", useSandbox: false, requestTimeoutSeconds: 90);
 ```
 
-To register the Globally Paid services only, `AddGloballyPaidServices` extension can be used:
+To register the Deepstack services only, `AddDeepStackServices` extension can be used:
 
 ```c#
-services.AddGloballyPaidServices();
+services.AddDeepStackServices();
 ```
 
 Or using the `appSettings.{Environment}.json` file:
 
 ```json
-  "GloballyPaid": {
+  "DeepStack": {
     "PublishableApiKey": "Your Publishable API Key",
     "SharedSecret": "Your Shared Secret",
     "AppId": "Your APP ID",
@@ -80,7 +68,6 @@ Run the Sample MVC App, populate with test data and click `Submit`
 For any feedback or bug/enhancement report, please [open an issue][issues] or [submit a
 pull request][pulls].
 
-[gp-dotnet]: https://github.com/globallypaid/globallypaid-sdk-dotnet
-[gp-js]: https://github.com/globallypaid/js-sdk-v2-sample
-[issues]: https://github.com/globallypaid/globallypaid-sdk-dotnet-samples/issues/new
-[pulls]: https://github.com/globallypaid/globallypaid-sdk-dotnet-samples/pulls
+[ds-dotnet]: https://github.com/deepstack-payments/deepstack-dotnet
+[issues]: https://github.com/deepstack-payments/deepstack-dotnet/issues
+[pulls]: https://github.com/deepstack-payments/deepstack-dotnet/pulls

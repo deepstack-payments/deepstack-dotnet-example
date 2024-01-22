@@ -1,5 +1,11 @@
 ﻿using System;
-using GloballyPaid;
+using DeepStack.Entities;
+using DeepStack.Entities.Common;
+using DeepStack.Enums;
+using DeepStack.Extensions;
+using DeepStack.Requests;
+using DeepStack.Requests.Base;
+using DeepStack.Services.v1.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DeepStack.CSharp.Sdk.SampleConsoleApp
@@ -267,7 +273,7 @@ namespace DeepStack.CSharp.Sdk.SampleConsoleApp
         {
             var services = new ServiceCollection();
 
-            services.AddGloballyPaidServices();
+            services.AddDeepStackServices();
             _serviceProvider = services.BuildServiceProvider();
         }
 

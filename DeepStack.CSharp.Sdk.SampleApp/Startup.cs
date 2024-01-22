@@ -30,11 +30,11 @@ namespace DeepStack.CSharp.Sdk.SampleApp
                 .AddXmlSerializerFormatters();
 
             services.AddDeepStack(
-                Configuration.GetValue<string>("GloballyPaid:PublishableApiKey"), 
-                Configuration.GetValue<string>("GloballyPaid:SharedSecret"), 
-                Configuration.GetValue<string>("GloballyPaid:AppId"),
-                Configuration.GetValue<bool>("GloballyPaid:UseSandbox"),
-                Configuration.GetValue<int>("GloballyPaid:RequestTimeoutSeconds"));
+                Configuration.GetValue<string>("DeepStack:PublishableApiKey"), 
+                Configuration.GetValue<string>("DeepStack:SharedSecret"), 
+                Configuration.GetValue<string>("DeepStack:AppId"),
+                Configuration.GetValue<bool>("DeepStack:UseSandbox"),
+                Configuration.GetValue<int>("DeepStack:RequestTimeoutSeconds"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

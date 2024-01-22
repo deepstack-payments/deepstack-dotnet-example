@@ -106,7 +106,7 @@
     </script>
 
     <script type="text/javascript">
-        var gpg = new DeepStackSDK('@configuration["GloballyPaid:PublishableApiKey"]');
+        var gpg = new DeepStackSDK('@configuration["DeepStack:PublishableApiKey"]');
         var cardExtended = gpg.createForm('card-extended');
         // var cardExtended = gpg.createForm('card-simple');
         cardExtended.mount('gpg-form-container');

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\dotnet-sdk-globallypaid\src\GloballyPaid.CSharp.Sdk\GloballyPaid.CSharp.Sdk.csproj" />
+    <ProjectReference Include="..\..\deepstack-payments\src\DeepStack.CSharp.Sdk\DeepStack.CSharp.Sdk.csproj" />
   </ItemGroup>
 
 </Project>
