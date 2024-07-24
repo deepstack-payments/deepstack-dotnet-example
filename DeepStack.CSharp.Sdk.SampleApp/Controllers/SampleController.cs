@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using DeepStack.Core;
 using DeepStack.Entities.Common;
 using DeepStack.Enums;
@@ -47,6 +48,21 @@ namespace DeepStack.CSharp.Sdk.SampleApp.Controllers
                     {
                         Id = chargeRequest.ID,
                         CVV = chargeRequest.CVV // should be provided when the transaction is user attended
+                    },
+                    BillingContact = new BillingContact()
+                    {
+                        Address = new Address()
+                        {
+                            Line1 = "123 Some St",
+                            City = "Irvine",
+                            State = "CA",
+                            CountryCode = ISO3166CountryCode.USA,
+                            PostalCode = "12345"
+                        },
+                        FirstName = "Khoi",
+                        LastName = "Nguyen",
+                        Email = "test@test.com",
+                        Phone = "123-123-1234"
                     }
                 },
                 Params = new TransactionParameters()
@@ -56,7 +72,17 @@ namespace DeepStack.CSharp.Sdk.SampleApp.Controllers
                     CofType = CofType.UNSCHEDULED_CARDHOLDER,
                     CurrencyCode = CurrencyCode.USD,
                     CountryCode = ISO3166CountryCode.USA,
-                    SavePaymentInstrument = false
+                    SavePaymentInstrument = false,
+                    Descriptor = "test",
+                    Fees = new List<Fee>()
+                    {
+                        new Fee()
+                        {
+                            FeeType = "Service Fee",
+                            Description = "5% tip for servers",
+                            Amount = 100
+                        }
+                    }
                 },
                 Meta = new TransactionMeta(){
                     ClientCustomerID = "12345", //set your customer id

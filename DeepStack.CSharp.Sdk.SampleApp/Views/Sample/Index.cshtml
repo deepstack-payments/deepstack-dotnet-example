@@ -10,7 +10,15 @@
             width: 55%;
             padding: 20px 20px 19px 20px;
             margin: 15px;
+            height: fit-content;
         }
+        .example-div-2 {
+                    width: 100%;
+                    padding: 20px 20px 19px 20px;
+                    margin: 15px;
+                    height: fit-content;
+        }
+               
         .example-table {
             width: 100%;
         }
@@ -35,7 +43,7 @@
                 <td colspan="2"><hr /></td>
             </tr>
             <tr>
-                <td>Items:</td>
+                <td>Item:</td>
                 <td class="right">$10.73</td>
             </tr>
             <tr>
@@ -66,7 +74,7 @@
 </section>
 
 <section>
-    <div class="example-div" id="gpg-form-container"></div>
+    <div class="example-div-2" id="gpg-form-container"></div>
 </section>
 
 <section>
@@ -77,8 +85,10 @@
 </section>
 
 @section Scripts{
-    <script src="https://jssdk.deepstack.io/payments/sdk/3.1.0/index.js"></script>
-    
+    @* <script src="https://jssdk.deepstack.io/payments/sdk/3.1.0/index.js"></script> *@
+    <script src="https://jssdk.deepstack.io/payments/sdk/3.2.0/index.js"></script>
+    @* <script src="./js/sdk/dist/index.js"></script> *@
+
     <script type="text/javascript">
         var inputValue = document.getElementById("transactionTotal");
         var apiResponseField = document.getElementById("apiResponse");
@@ -107,14 +117,86 @@
 
     <script type="text/javascript">
         var gpg = new DeepStackSDK('@configuration["DeepStack:PublishableApiKey"]');
-        var cardExtended = gpg.createForm('card-extended');
+        // var cardExtended = gpg.createForm('card-simple',{
+        //             style: {
+        //                 base: {
+        //                   // width: '100%', // width of iframe returned
+        //                   // buttonColor: 'white', // change the submit button color
+        //                   buttonBackground: '#000000', // submit button background color
+        //                   // inputColor: 'purple', // color of input field text
+        //                   // color: 'green', // color of text (labels, lines, etc)
+        //                   // NEW vvv
+        //                   submitText: 'Pay', // custom submit button text
+        //                   // height: '300px', // height of iframe returned
+        //                   cancelButtonBackground: '#fff1f1', // color of clear button background
+        //                   cancelButtonColor: 'red', // color of clear button text
+        //                   cancelButtonFirstButtonWidth: '50%', // how much of the 100% clear button will take
+        //                   cancelText: 'Cancel Transaction', // clear button text
+        //                   showCancelButton: false, // show clear button
+        //                   // fontInputLabelSize: '20px', // size of labels when in input field
+        //                   // fontInputLabelWeight: 'bold', // Weight of labels when in input field
+        //                   fontLabelSize: '10px', // size of labels when floating
+        //                   // fontLabelWeight: 'bold', // Weight of label when floating
+        //                   // fontInputWeight: 'bold', // weight of input fields
+        //                   fontFamily: 'Jost', // font to be used
+        //                   fontSize: '20px',
+        //                   // errorBlockFontSize: '10px',
+        //                   hidePostalField: true,
+        //                   buttonHeight: '60px',
+        //                   sideButtonGap: '15px',
+        //                   stackButtonGap: '10px',
+        //                   buttonTopMargin: '10px'
+        //                 }
+        //             }
+        //         });
+        
+        var cardExtended = gpg.createForm('card-extended',{
+                            style: {
+                                base: {
+                                  // width: '100%', // width of iframe returned
+                                  // buttonColor: 'white', // change the submit button color
+                                  buttonBackground: '#000000', // submit button background color
+                                  // inputColor: 'purple', // color of input field text
+                                  // color: 'green', // color of text (labels, lines, etc)
+                                  // NEW vvv
+                                  submitText: 'Pay', // custom submit button text
+                                //   height: '1000px', // height of iframe returned
+                                  cancelButtonBackground: '#fff1f1', // color of clear button background
+                                  cancelButtonColor: 'red', // color of clear button text
+                                  cancelButtonFirstButtonWidth: '50%', // how much of the 100% clear button will take
+                                  cancelText: 'Cancel Transaction', // clear button text
+                                  showCancelButton: false, // show clear button
+                                  // fontInputLabelSize: '20px', // size of labels when in input field
+                                  // fontInputLabelWeight: 'bold', // Weight of labels when in input field
+                                  fontLabelSize: '10px', // size of labels when floating
+                                  // fontLabelWeight: 'bold', // Weight of label when floating
+                                  // fontInputWeight: 'bold', // weight of input fields
+                                  fontFamily: 'Jost', // font to be used
+                                  fontSize: '20px',
+                                  // errorBlockFontSize: '10px',
+                                  hidePostalField: true,
+                                  buttonHeight: '60px',
+                                  sideButtonGap: '15px',
+                                  stackButtonGap: '10px',
+                                  buttonTopMargin: '15px'
+                                }
+                            }
+                        });
         // var cardExtended = gpg.createForm('card-simple');
         cardExtended.mount('gpg-form-container');
+        
+        cardExtended.on('CANCEL_FORM', (response) => {
+            console.log('Form cancel event');
+        });
+            
+        cardExtended.on('SUBMIT_CLICKED', (response) => {
+            console.log('Sumbit clicked event');
+        })
+    
+        
     
         cardExtended.on('FORM_RESPONSE',
             (token) => {
-                console.log(token);
-    
                 token.amount =  convertToCents();
     
                 var data = JSON.stringify(token);
